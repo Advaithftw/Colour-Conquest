@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (tile.color == Color.WHITE || tile.color == playerColor) {
-            // Initialize and play the click sound
+
             if (mp != null) {
                 mp.release();
             }
