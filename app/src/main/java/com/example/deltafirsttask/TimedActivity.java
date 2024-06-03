@@ -286,8 +286,6 @@ public class TimedActivity extends AppCompatActivity {
         }
     }
 
-
-
     private void saveWinnerToFirestore(String winnerName) {
         Map<String, Object> winner = new HashMap<>();
         winner.put("name", winnerName);
@@ -333,6 +331,7 @@ public class TimedActivity extends AppCompatActivity {
         updatePlayerScores();
         startPlayerOneTimer();
     }
+
     private void startPlayerOneTimer() {
         if (p2timer != null) {
             p2timer.cancel();
@@ -348,7 +347,7 @@ public class TimedActivity extends AppCompatActivity {
                 p2wins++;
                 matchesplayed++;
                 if (p2wins >= winmatches) {
-                    saveWinnerToFirestore(p2name);  // Save winner to Firestore
+                    saveWinnerToFirestore(p2name);
                     showgamewin(p2name);
                 } else if (matchesplayed == totalmatches && p1wins == p2wins) {
                     showgamedraw();
@@ -386,12 +385,8 @@ public class TimedActivity extends AppCompatActivity {
         }.start();
     }
 
-
-
-
-
-
     private void showmatchwin(String winnerName) {
+        canceltimers();
         new AlertDialog.Builder(this)
                 .setTitle("Match Over")
                 .setMessage(winnerName + " has won this match!")
@@ -401,14 +396,15 @@ public class TimedActivity extends AppCompatActivity {
                         Intent intent = new Intent(TimedActivity.this, HomeActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
-                        finish(); // Finish the current activity to prevent going back to the dialog
+                        finish();
                     }
                 })
                 .setPositiveButton("Next Match", (dialog, which) -> resetGameBoard())
                 .show();
     }
-    private void showgamedraw()
-    {
+
+    private void showgamedraw() {
+        canceltimers();
         new AlertDialog.Builder(this)
                 .setTitle("Game Over")
                 .setMessage("It's a Draw!")
@@ -428,10 +424,10 @@ public class TimedActivity extends AppCompatActivity {
                     resetGameBoard();
                 })
                 .show();
-
     }
 
     private void showgamewin(String winnerName) {
+        canceltimers();
         new AlertDialog.Builder(this)
                 .setTitle("Game Over")
                 .setMessage(winnerName + " has won the Game!")
@@ -451,5 +447,14 @@ public class TimedActivity extends AppCompatActivity {
                     resetGameBoard();
                 })
                 .show();
+    }
+
+    private void canceltimers() {
+        if (p1timer != null) {
+            p1timer.cancel();
+        }
+        if (p2timer != null) {
+            p2timer.cancel();
+        }
     }
 }

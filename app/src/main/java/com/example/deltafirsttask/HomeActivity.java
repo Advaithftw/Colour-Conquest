@@ -119,7 +119,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        super.onBackPressed();
         new AlertDialog.Builder(this)
                 .setTitle("Exit")
                 .setMessage("Are you sure you want to exit?")
