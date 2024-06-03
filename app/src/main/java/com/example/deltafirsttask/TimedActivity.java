@@ -249,22 +249,22 @@ public class TimedActivity extends AppCompatActivity {
 
 
     private void checkForWin() {
-        boolean pl1tiles = false;
-        boolean pl2tiles = false;
+        boolean playerOneHasTiles = false;
+        boolean playerTwoHasTiles = false;
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 GameBoard.tile tile = gameBoard.gettile(row, col);
                 if (tile.color == ContextCompat.getColor(this, R.color.blue)) {
-                    pl1tiles = true;
+                    playerOneHasTiles = true;
                 } else if (tile.color == ContextCompat.getColor(this, R.color.redd)) {
-                    pl2tiles = true;
+                    playerTwoHasTiles = true;
                 }
             }
         }
 
-        if (!pl1tiles || !pl2tiles) {
-            String winnerName = pl1tiles ? p1name : p2name;
+        if (!playerOneHasTiles || !playerTwoHasTiles) {
+            String winnerName = playerOneHasTiles ? p1name : p2name;
             if (winnerName.equals(p1name)) {
                 p1wins++;
             } else {
@@ -273,7 +273,10 @@ public class TimedActivity extends AppCompatActivity {
 
             matchesplayed++;
 
-            if (p1wins >= winmatches || p2wins >= winmatches) {
+
+            if (matchesplayed == totalmatches && p1wins == p2wins) {
+                showgamedraw();
+            } else if (p1wins >= winmatches || p2wins >= winmatches) {
                 if (p1wins == p2wins) {
                     showgamedraw();
                 } else {

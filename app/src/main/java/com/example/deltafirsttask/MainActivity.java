@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
     private MediaPlayer mp;
 
     private int totalmatches;
-    private int matchesToWin;
-    private int player1Wins;
-    private int player2Wins;
+    private int winmatches;
+    private int p1wins;
+    private int p2wins;
     private int matchesPlayed;
 
     @Override
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         cols = getIntent().getIntExtra("NUM_COLS", 5);
         totalmatches = getIntent().getIntExtra("NUM_MATCHES", 3);
 
-        matchesToWin = (totalmatches / 2) + 1;
+        winmatches = (totalmatches / 2) + 1;
 
         gridLayout.setRowCount(rows);
         gridLayout.setColumnCount(cols);
@@ -244,25 +244,29 @@ public class MainActivity extends AppCompatActivity {
         if (!playerOneHasTiles || !playerTwoHasTiles) {
             String winnerName = playerOneHasTiles ? p1name : p2name;
             if (winnerName.equals(p1name)) {
-                player1Wins++;
+                p1wins++;
             } else {
-                player2Wins++;
+                p2wins++;
             }
 
             matchesPlayed++;
 
-            if (player1Wins >= matchesToWin || player2Wins >= matchesToWin) {
-                if (player1Wins == player2Wins) {
-                    showGameDrawDialog();
+
+            if (matchesPlayed == totalmatches && p1wins == p2wins) {
+                showgamedraw();
+            } else if (p1wins >= winmatches || p2wins >= winmatches) {
+                if (p1wins == p2wins) {
+                    showgamedraw();
                 } else {
-                    saveWinnerToFirestore(winnerName);  // Save winner to Firestore
-                    showGameWinDialog(winnerName);
+                    saveWinnerToFirestore(winnerName);
+                    showgamewin(winnerName);
                 }
             } else {
-                showMatchWinDialog(winnerName);
+                showmatchwin(winnerName);
             }
         }
     }
+
 
 
     private void saveWinnerToFirestore(String winnerName) {
@@ -297,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
         updatePlayerScores();
     }
 
-    private void showMatchWinDialog(String winnerName) {
+    private void showmatchwin(String winnerName) {
         new AlertDialog.Builder(this)
                 .setTitle("Match Over")
                 .setMessage(winnerName + " has won this match!")
@@ -307,14 +311,14 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
-                        finish(); // Finish the current activity to prevent going back to the dialog
+                        finish();
                     }
                 })
                 .setPositiveButton("Next Match", (dialog, which) -> resetGameBoard())
                 .show();
     }
 
-    private void showGameDrawDialog() {
+    private void showgamedraw() {
         new AlertDialog.Builder(this)
                 .setTitle("Game Over")
                 .setMessage("It's a Draw!")
@@ -324,19 +328,19 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
-                        finish(); // Finish the current activity to prevent going back to the dialog
+                        finish();
                     }
                 })
                 .setPositiveButton("Restart Game", (dialog, which) -> {
-                    player1Wins = 0;
-                    player2Wins = 0;
+                    p1wins = 0;
+                    p2wins = 0;
                     matchesPlayed = 0;
                     resetGameBoard();
                 })
                 .show();
     }
 
-    private void showGameWinDialog(String winnerName) {
+    private void showgamewin(String winnerName) {
         new AlertDialog.Builder(this)
                 .setTitle("Game Over")
                 .setMessage(winnerName + " has won the Game!")
@@ -346,12 +350,12 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
-                        finish(); // Finish the current activity to prevent going back to the dialog
+                        finish();
                     }
                 })
                 .setPositiveButton("Restart Game", (dialog, which) -> {
-                    player1Wins = 0;
-                    player2Wins = 0;
+                    p1wins = 0;
+                    p2wins = 0;
                     matchesPlayed = 0;
                     resetGameBoard();
                 })
