@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orange"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Player Information"
+                android:textSize="30dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/player1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:cardCornerRadius="30dp"
+                android:backgroundTint="@color/blue"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <EditText
+                        android:id="@+id/pl1name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:hint="Enter Player 1 Name"
+                        android:drawablePadding="8dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/player2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:cardCornerRadius="30dp"
+                android:backgroundTint="@color/redd"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <EditText
+                        android:id="@+id/pl2name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:hint="Enter Player 2 Name"
+                        android:drawablePadding="8dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <EditText
+                android:id="@+id/rows"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:padding="8dp"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:hint="Enter Number of Rows in board"
+                android:drawablePadding="8dp"/>
+
+            <EditText
+                android:id="@+id/columns"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:hint="Enter Number of Columns in board"
+                android:drawablePadding="8dp"/>
+
+            <EditText
+                android:id="@+id/Bestof"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:hint="Number of Matches"
+                android:drawablePadding="8dp"/>
+
+            <CheckBox
+                android:id="@+id/checkBoxTimed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Timed Game"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <Button
+                android:id="@+id/buttonPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Game"
+                android:textSize="18sp"
+                app:cornerRadius="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/layouts"
+
+    android:layout_height="match_parent">
+
+
+    <GridLayout
+        android:id="@+id/gameboard"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:rowCount="5"
+        android:columnCount="5"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="150dp"
+
+        android:background="@drawable/inset"/>
+
+
+    <TextView
+        android:id="@+id/turn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textSize="20sp" />
+
+
+    <Button
+        android:id="@+id/reset"
+        android:backgroundTint="@color/blackish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:text="Reset" />
+
+    <Button
+        android:id="@+id/player1score"
+        android:backgroundTint="@color/blackish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+
+        android:layout_alignParentLeft="true"
+        android:text="Player 1 Score: 0"
+        android:layout_above="@id/gameboard"
+        />
+
+
+    <Button
+        android:id="@+id/player2score"
+
+        android:textColor="@color/redd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blackish"
+
+        android:text="Player 2 Score: 0"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/gameboard"
+        />
+
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "525161699378",
+    "project_id": "colour-conquest",
+    "storage_bucket": "colour-conquest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525161699378:android:f92644ea154b7e70f5042b",
+        "android_client_info": {
+          "package_name": "com.example.deltafirsttask"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACAcahzW4p3g05jr_EUwF1oaYij0yaBPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
